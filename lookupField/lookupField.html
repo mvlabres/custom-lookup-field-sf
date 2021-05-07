@@ -1,0 +1,86 @@
+<template>
+    <div class="slds-form-element">
+        <template if:true={label}>
+            <label class="slds-form-element__label lookup-label" for="combobox-id-3">
+                <template if:true={isAttributeRequired}>
+                    <span class="label-required-text">* &nbsp;</span>
+                </template>
+                {label}
+            </label>
+        </template>
+        <div class="slds-form-element__control">
+            <div class="slds-combobox_container">
+                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open"
+                    aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                        <!-- hide this by default-->
+                        <div class="selectedOption slds-hide">
+                            <span class="slds-icon_container slds-icon-standard-account slds-combobox__input-entity-icon"
+                                title="Account">
+                                <lightning-icon 
+                                    icon-name={icon}   
+                                    size="x-small">
+                                </lightning-icon>
+                            </span>
+                            <div class="value-selected">{selected}</div>
+                            <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_right close-field-selected">
+                                <template if:false={isDisabled}>
+                                    <lightning-icon 
+                                        icon-name="utility:close" 
+                                        alternative-text="close" 
+                                        size="x-small"
+                                        onclick={handleRemove}>
+                                    </lightning-icon>
+                                </template>
+                                
+                            </button>
+                        </div>
+                        <!-- end hide this by default-->
+                        <div class="defaultClass">
+                            <input type="text" data-id=inputObj class="slds-input slds-combobox__input slds-has-focus" id="combobox-id-3"
+                                aria-activedescendant="option1" aria-autocomplete="list" aria-controls="listbox-id-3"
+                                autocomplete="off" role="textbox" 
+                                placeholder={placeholder} 
+                                onkeyup={handleKeyUp}
+                                value={term} 
+                                readonly={isReadOnly}
+                                onblur={handleGetOut}
+                                disabled={isDisabled}/>
+                            <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                                <lightning-icon icon-name="utility:search" alternative-text="Approved" size="x-small">
+                                </lightning-icon>
+                            </span>
+                        </div>
+                    </div>
+                    <span class="message-error">{messageError}</span>
+                    <div id="listbox-id-3" 
+                        class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid accounts_list slds-hide"
+                        role="listbox">
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                            <template for:each={records} for:item="record" >
+                                <li role="presentation" class="slds-listbox__item" key={record.Id}
+                                    onclick={handleOptionSelect} data-id={record.Id} data-name={record.labelToShow}>
+                                    <div aria-selected="true" id={record.Id}
+                                        class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta option-auto-complete"
+                                        role="option" tabindex="0">
+                                        <span class="slds-icon_container slds-icon-standard-account">
+                                            <lightning-icon
+                                                icon-name={icon}
+                                                size="medium">
+                                            </lightning-icon>
+                                        </span>
+                                        <span class="slds-media__body">
+                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity">
+                                                {record.labelToShow}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

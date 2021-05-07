@@ -1,0 +1,32 @@
+.option-auto-complete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.option-auto-complete > span:last-child , .selectedOption > input:last-child{
+   margin-left: 5px;
+}
+.value-selected{
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+    height: 1.875rem;
+}
+.selectedOption{
+    background-color: #fff;
+    border-radius: 5px;
+    border: solid 1px rgb(221, 219, 218);
+}
+.validity-field{
+    border: solid 1px red;
+}
+.message-error{
+    color:red;
+    display: none;
+}
+.show-message-error{
+    display:block;
+}
+.label-required-text{
+    color: red;
+}
